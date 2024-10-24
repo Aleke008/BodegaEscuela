@@ -1,0 +1,6 @@
+@BodegaEscuela_HostAddress = http://localhost:5242
+
+GET {{BodegaEscuela_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
