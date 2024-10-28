@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BodegaEscuela.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -170,7 +170,8 @@ namespace BodegaEscuela.Migrations
                     IdProveedor = table.Column<int>(type: "int", nullable: false),
                     proveedorIdProveedor = table.Column<int>(type: "int", nullable: true),
                     IdEscuela = table.Column<int>(type: "int", nullable: false),
-                    escuelaIdEscuela = table.Column<int>(type: "int", nullable: true)
+                    escuelaIdEscuela = table.Column<int>(type: "int", nullable: true),
+                    ImagenUrl = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {

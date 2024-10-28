@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BodegaEscuela.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241024031412_Initial")]
-    partial class Initial
+    [Migration("20241027194244_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -187,6 +187,9 @@ namespace BodegaEscuela.Migrations
 
                     b.Property<int>("IdProveedor")
                         .HasColumnType("int");
+
+                    b.Property<string>("ImagenUrl")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("escuelaIdEscuela")
                         .HasColumnType("int");

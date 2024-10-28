@@ -18,5 +18,7 @@ namespace BodegaEscuela.ModelsBE
 
         public required int IdEscuela { get; set; }
         public Escuela? escuela { get; set; }
+        
+        public string? ImagenUrl { get; set; }
     }
 }

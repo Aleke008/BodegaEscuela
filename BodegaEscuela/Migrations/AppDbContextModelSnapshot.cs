@@ -185,6 +185,9 @@ namespace BodegaEscuela.Migrations
                     b.Property<int>("IdProveedor")
                         .HasColumnType("int");
 
+                    b.Property<string>("ImagenUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int?>("escuelaIdEscuela")
                         .HasColumnType("int");
 

@@ -1,0 +1,23 @@
+﻿@model IEnumerable<BodegaEscuela.ModelsBE.Producto>
+
+<h2>Seleccionar Productos</h2>
+
+<div class="row">
+    @foreach (var producto in Model)
+    {
+    <div class="col-md-3">
+        <div class="card">
+            <img src="@producto.ImagenUrl" class="card-img-top" alt="@producto.nombre" />
+            <div class="card-body">
+                <h5 class="card-title">@producto.nombre</h5>
+                <p>Precio: $@producto.precio</p>
+                <form asp-action="Seleccionar" method="post">
+                    <input type="hidden" name="id" value="@producto.IdProducto" />
+                    <input type="number" name="cantidad" min="1" max="@producto.stock" />
+                    <button type="submit" class="btn btn-primary">Seleccionar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    }
+</div>

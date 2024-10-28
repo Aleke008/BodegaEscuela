@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BodegaEscuela.Context;
@@ -12,7 +11,7 @@ namespace BodegaEscuela.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductosController : ControllerBase
+    public class ProductosController : Controller
     {
         private readonly AppDbContext _context;
 
@@ -28,17 +27,38 @@ namespace BodegaEscuela.Controllers
             return await _context.Productos.ToListAsync();
         }
 
+        // Método para la vista de selección de productos
+        [HttpGet("Seleccionar")]
+        public async Task<IActionResult> SeleccionarProductos()
+        {
+            var productos = await _context.Productos.ToListAsync();
+            return View("Seleccionar", productos);
+        }
+
+        // POST: api/Productos/Seleccionar
+        [HttpPost("Seleccionar")]
+        public async Task<IActionResult> Seleccionar(int id, int cantidad)
+        {
+            var producto = await _context.Productos.FindAsync(id);
+            if (producto != null && cantidad <= producto.stock)
+            {
+                producto.stock -= cantidad;
+                _context.Entry(producto).State = EntityState.Modified;
+                await _context.SaveChangesAsync();
+                return RedirectToAction("SeleccionarProductos");
+            }
+            return BadRequest("Cantidad no disponible.");
+        }
+        
         // GET: api/Productos/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Producto>> GetProducto(int id)
         {
             var producto = await _context.Productos.FindAsync(id);
-
             if (producto == null)
             {
                 return NotFound();
             }
-
             return producto;
         }
 
